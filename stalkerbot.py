@@ -18,13 +18,9 @@ class Stalkerbot(object):
         # TODO: Add option to manually input username
         # TODO: Add mechanism to avoid getting same victim in a 24 hour span.
         if popular:
-            #comments = list(self.r.get_top(limit=1))
             submission = list(self.r.get_subreddit('all').get_top(limit=1))
-
             comment = submission[0].comments[0]
             username = comment.author.__str__()
-            #username = comments[0].author
-
             return username, comment
         else:
             comments = list(self.r.get_all_comments())
@@ -81,8 +77,8 @@ def run():
     has_mail, created, link_karma, comment_karma, \
     is_gold, is_mod   = bot.get_info(username)
 
-    print keywords
-
+    # This isn't working correctly.
+    # Need to remove spaces in order to get table layout on Reddit.
     text = """
            *%s* user data
            subject|data
@@ -98,13 +94,15 @@ def run():
                subreddits[2][0], has_mail, link_karma, comment_karma, is_gold, is_mod)
     print text
 
+    # For testing purposes, in case information returned is incorrect.
+    # Should stay until bot is working properly.
     decision = raw_input("Reply? ")
     if decision == 'yes':
         comment.reply(text)
     else:
         run()
 
-    print 'replied...'
+    print 'Successfully replied...'
 
 if __name__ == "__main__":
     run()
