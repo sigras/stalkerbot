@@ -4,7 +4,7 @@ import reddit
 
 class Stalkerbot(object):
     def __init__(self, username=None, password=None):
-        self.r = reddit.Reddit(user_agent='testing')
+        self.r = reddit.Reddit(user_agent='stalkerbot')
 
         if username and password:
             self.r.login(username, password)
@@ -36,7 +36,6 @@ class Stalkerbot(object):
         comments = [str(x) for x in comment_history]
         keywords = count(words(comments.__str__()))
         sorted_keywords = sorted(keywords.iteritems(), key=operator.itemgetter(1), reverse=True)
-        print sorted_keywords
         return sorted_keywords
 
     def get_favorite_subreddits(self, comment_history, username=None):
