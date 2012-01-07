@@ -75,7 +75,7 @@ def run():
     keywords          = bot.get_keywords(comment_history)
     subreddits        = bot.get_favorite_subreddits(comment_history)
     has_mail, created, link_karma, comment_karma, \
-    is_gold, is_mod   = bot.get_info(username)
+        is_gold, is_mod   = bot.get_info(username)
 
     # This isn't working correctly.
     # Need to remove spaces in order to get table layout on Reddit.
